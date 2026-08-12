@@ -1,6 +1,6 @@
 # ONM Casestudy — Fusemachines
 
-Organization and Management case study report (LaTeX source + compiled PDF).
+Organization and Management case study report (LaTeX source + compiled PDF), examining Fusemachines Inc.'s org structure, HR practices, and cross-functional operations, based on an interview with the company's Talent Acquisition and PR managers.
 
 ## Contents
 
