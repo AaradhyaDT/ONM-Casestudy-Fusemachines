@@ -1,0 +1,490 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[margin=1 in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{forest}
+\usepackage[hidelinks]{hyperref}
+
+% ---------- Placeholder helper: search for "TODOFILL" in this file ----------
+\newcommand{\todofill}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+% ---------- Footer style: "N | P a g e" ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage\ | P a g e}
+\renewcommand{\headrulewidth}{0pt}
+
+% ---------- Chapter / section style ----------
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\centering}
+  {\Large CHAPTER \thechapter}
+  {10pt}{\Large\bfseries}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\bfseries\itshape}
+  {\thesection.}{0.5em}{}
+
+\onehalfspacing
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\begin{center}
+\textbf{TRIBHUVAN UNIVERSITY}\\[4pt]
+\textbf{INSTITUTE OF ENGINEERING}\\[4pt]
+\textbf{KATHMANDU ENGINEERING COLLEGE}\\[4pt]
+\textbf{DEPARTMENT OF ELECTRONICS, COMMUNICATION AND INFORMATION ENGINEERING}\\[4pt]
+\textbf{KALIMATI, KATHMANDU}\\[30pt]
+
+\includegraphics[width=4cm]{college_logo.jpg}\\[30pt]
+
+\vspace{20pt}
+{\Large\bfseries A Case Study on ``Fusemachines Inc.''}\\[30pt]
+
+\textbf{SUBMITTED BY:}\\[6pt]
+AARADHYA DEV TAMRAKAR -- KAT079BEI001\\
+RUPESH KADEL -- KAT079BEI034\\
+SANKALPA LAMSAL -- KAT079BEI039\\
+SUJAL KHANAL -- KAT079BEI044\\
+SUMIT THAPA -- KAT079BEI045\\[24pt]
+
+\textbf{SUBMITTED TO:}\\
+Er. Sagun Manandhar\\[24pt]
+
+13\textsuperscript{th} August, 2026
+\end{center}
+\end{titlepage}
+
+% ============================================================
+% ACKNOWLEDGEMENT
+% ============================================================
+\chapter*{ACKNOWLEDGEMENT}
+\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENT}
+
+We extend our sincere gratitude to Er. Sagun Manandhar for the guidance and support provided throughout this Organization and Management case study. The mentorship received has been central to our understanding of organizational structure, human resource practices, and management principles as applied in a real corporate setting.
+
+We are especially grateful to Ms. Pragya Joshi, Senior Manager, Talent Acquisition, and Mr. Akshath Chhetri, PR Manager, both of Fusemachines, for generously giving their time in a joint one-hour session to walk us through the company's organizational structure, human resource policies, recruitment process, internal governance, and day-to-day operations. Their candid and detailed responses to our questions, given jointly and building on one another's answers, formed the entire basis of this report.
+
+We also thank Fusemachines Inc. as an organization for its openness in discussing internal management practices with a group of undergraduate students, and for the broader contribution the company's AI Fellowship program makes to engineering education in Nepal.
+
+Finally, we thank the Department of Electronics, Communication and Information Engineering and the college administration for the resources, guidance, and support extended throughout this case study.
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+
+This case study examines the organizational structure, human resource management practices, and internal operations of Fusemachines Inc., an enterprise AI product and services company headquartered in New York with its largest operational base in Nepal. Through a joint, one-hour structured interview with Ms. Pragya Joshi, Senior Manager for Talent Acquisition, and Mr. Akshath Chhetri, PR Manager, our group explored how the organization is structured across its Finance, People and Operations, Growth, and Technology divisions; how recruitment, staffing, and performance management are carried out; how the company governs itself across labour-law compliance and internal culture-setting; and how digital tools, OKR-based planning, and cross-functional project execution are used to coordinate a workforce spread across three overlapping time zones.
+
+Our findings show a company that combines legally mandated HR compliance with a comparatively flexible, low-surveillance internal culture -- hybrid work arrangements, floating leave, tenure-based vacation benefits, and a multi-layered appraisal system built on self-, peer-, and manager-evaluation. The study also surfaces structural ambiguities, such as the case-by-case division of final decision authority between project managers and department heads, and operational pressure points such as timezone-driven staffing and revenue exposure to project-pipeline volume. This report presents these findings alongside a set of practical recommendations for the organization.
+
+% ============================================================
+% TABLE OF CONTENTS
+% ============================================================
+\tableofcontents
+
+% ============================================================
+% CHAPTER 1
+% ============================================================
+\chapter{Introduction}
+
+\section{Introduction}
+
+Fusemachines Inc. is an enterprise AI product and services company that helps organizations of varying sizes, across the world, carry out their AI-driven digital transformation. As described in the interview, digital transformation at Fusemachines is not limited to deploying AI in isolation, but covers the broader question of how technology and AI can make an enterprise's operations smoother and its return on investment more profitable.
+
+The majority of Fusemachines' operations run out of Nepal, even though its clients are spread across the world and its corporate leadership -- CEO, Director-level, and Senior Director-level staff -- is based at the company's headquarters in New York. The company additionally maintains offices and initiatives in Canada, the Dominican Republic, and Kenya, alongside its Nepal base.
+
+A major part of Fusemachines' engagement with Nepal is its AI Fellowship, an upskilling program aimed at bringing the Nepali technical talent pool to a globally competitive standard so that fellows are able to serve the company's global clients effectively. The Fellowship has been running since approximately 2013, and was in its tenth or eleventh year at the time of this interview; it has also been extended to fellows outside Nepal.
+
+To understand Fusemachines' organizational structure, staffing practices, and internal management style in greater depth, our group -- consisting of students from two IOE-affiliated engineering colleges -- conducted a joint, one-hour interview with two Fusemachines staff: Ms. Pragya Joshi, Senior Manager for Talent Acquisition, and Mr. Akshath Chhetri, PR Manager. As our group had not been informed in advance which staff member(s) would be present, questions were posed to the pair generally rather than directed at either individual by name; both answered freely throughout the session and frequently built on or added to one another's responses. This report documents the structure, policies, and operational practices described during that session, along with the group's own observations and recommendations.
+
+\section{History}
+
+According to the interviewees, Fusemachines was founded in 2012 by Dr.\ Sameer Maskey (referred to during the interview by the nickname ``Sammy''), who studied in Nepal before going to the United States for his undergraduate studies. He subsequently worked at IBM Watson, one of the top technology companies globally, before returning to found Fusemachines.
+
+Key milestones described in the interview include:
+\begin{itemize}[leftmargin=1.5cm]
+  \item The company was founded and first began operating in Nepal.
+  \item It was later registered as a company in the United States, after which it began acquiring clients from around the world.
+  \item Fusemachines Nepal operates as part of Fusemachines Inc., the US-registered parent entity.
+  \item The company has been engaged in AI-related work for more than ten years -- predating the mainstream public awareness of AI brought about by tools such as ChatGPT.
+  \item The company's operational base has remained in Nepal throughout this growth; engineers based in Nepal work directly with the company's top-tier global clients rather than being restricted to a subset of accounts.
+  \item Fusemachines has since become a publicly listed company (exact listing date was not specified during the interview).
+\end{itemize}
+
+The interviewees also noted that the company's AI Fellowship program, aimed at students and early-career engineers, has been running for approximately ten to eleven years at the time of this interview, making it one of the longer-standing components of the company's presence in Nepal.
+
+% ============================================================
+% CHAPTER 2
+% ============================================================
+\chapter{Mission}
+
+\section{Mission}
+
+Fusemachines does not appear to operate from a single formally recited mission statement in the way a government body might; instead, the interviewees described the company's core purpose and objectives in terms of what the organization sets out to do for its clients and for its people. Based on the interview, the company's core purpose can be summarized as:
+
+\begin{quote}
+\itshape To help enterprises of different sizes, around the world, carry out their AI-driven digital transformation -- using AI and technology to make client operations smoother and more profitable, not as an end in itself.
+\end{quote}
+
+Objectives, as described during the interview:
+\begin{itemize}[leftmargin=1.5cm]
+  \item Support enterprise clients globally across a wide range of industry verticals in their AI and digital transformation journeys.
+  \item Maintain the majority of company operations, and the majority of its workforce, in Nepal, while serving a global client base.
+  \item Upskill the Nepali technical talent pool to a globally competitive standard through the AI Fellowship, so that fellows can serve global clients efficiently.
+  \item Extend AI Fellowship-style upskilling programs beyond Nepal as well.
+  \item Maintain compliance with local labour law while building an internal culture the company defines for itself -- covering training, benefits, and employee engagement.
+  \item Continue to invest in internal automation and AI-assisted operations to run the company's own internal processes more efficiently, in addition to serving external clients.
+\end{itemize}
+
+% ============================================================
+% CHAPTER 3
+% ============================================================
+\chapter{Organization Structure}
+
+\section{Organization Structure}
+
+At the top of the structure sits the Corporate Executive layer -- the Board of Directors and top management, including the CEO, who are based at the company's headquarters in New York.
+
+Below Corporate Executive, the company is organized into four main departments: Finance, People and Operations, Growth, and Technology. Growth and Technology are themselves further divided into several sub-departments.
+
+\begin{figure}[htbp]
+\centering
+\begin{forest}
+  for tree={
+    draw, rounded corners, align=center, l sep=14pt, s sep=6pt,
+    edge={-latex}, font=\small
+  }
+  [{Corporate Executive\\(Board of Directors, CEO -- New York HQ)}
+    [Finance]
+    [People and\\Operations]
+    [Growth]
+    [Technology]
+  ]
+\end{forest}
+\caption{Top-level organizational structure of Fusemachines Inc.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{forest}
+  for tree={
+    draw, rounded corners, align=center, l sep=14pt, s sep=5pt,
+    edge={-latex}, font=\footnotesize
+  }
+  [Finance
+    [Finance Team]
+    [Legal Team]
+  ]
+\end{forest}
+\hspace{1cm}
+\begin{forest}
+  for tree={
+    draw, rounded corners, align=center, l sep=14pt, s sep=5pt,
+    edge={-latex}, font=\footnotesize
+  }
+  [People and\\Operations
+    [HR]
+    [Business Operations\\\& Logistics]
+  ]
+\end{forest}
+\caption{Finance and People \& Operations sub-structure.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{forest}
+  for tree={
+    draw, rounded corners, align=center, l sep=14pt, s sep=4pt,
+    edge={-latex}, font=\footnotesize
+  }
+  [Growth
+    [Sales]
+    [Marketing]
+    [Customer\\Success]
+    [PR and\\Communications]
+    [Talent\\Fulfillment]
+  ]
+\end{forest}
+\caption{Growth department sub-structure (five sub-departments).}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{forest}
+  for tree={
+    draw, rounded corners, align=center, l sep=14pt, s sep=4pt,
+    edge={-latex}, font=\footnotesize
+  }
+  [Technology
+    [AI Services
+      [AI\\Engineering]
+      [Data\\Engineering]
+      [App\\Engineering]
+    ]
+    [Product
+      [App\\Engineering]
+      [Data\\Engineering]
+      [Product\\Management]
+    ]
+    [Internal IT\\Team]
+    [Talent\\Development]
+  ]
+\end{forest}
+\caption{Technology department sub-structure. Note: as described in the interview, the AI Engineering, Data Engineering, and App Engineering teams serve both the AI Services line and the Product line rather than being duplicated headcount.}
+\end{figure}
+
+The interviewees specifically identified Talent Development -- which covers both external hiring channels such as the AI Fellowship and internal upskilling/training programs for existing staff -- as a distinct function under Technology, separate from Talent Fulfillment (recruitment) under Growth.
+
+% ============================================================
+% CHAPTER 4
+% ============================================================
+\chapter{Recruitment, Staffing, and Training}
+
+\section{Recruitment and Staffing}
+
+\subsection*{I. Recruitment Process}
+
+Recruitment at Fusemachines begins with a vacancy being posted on the company's career page. Applications are screened by the internal team against the job description before candidates are advanced.
+
+\subsection*{II. Recruitment Steps}
+\begin{enumerate}[leftmargin=1.5cm]
+  \item \textbf{Resume Screening.} Applications are evaluated against the job description (JD); only candidates who meet the requirement proceed.
+  \item \textbf{First-Round Interview.} Conducted by the Talent Acquisition team.
+  \item \textbf{Technical Round.} A role-specific technical interview.
+  \item \textbf{Coding Assessment.} Required for some roles, depending on the position.
+  \item \textbf{Client-Side Interview(s).} Where a candidate is being hired directly against a client requirement, the client may conduct two to three additional interview rounds, and may run its own coding assessment as well.
+  \item \textbf{Background Verification.} Includes a police report / character verification check, conducted after all interview and assessment stages are cleared.
+\end{enumerate}
+
+\subsection*{III. Contract Types}
+\begin{itemize}[leftmargin=1.5cm]
+  \item Nepal-based engineering hires are, in the interviewees' estimate, approximately 99.9\% full-time employees.
+  \item Technical (engineering) hires sign a two-year bond contract. The stated reason is that engineers are typically deployed onto a specific client project soon after hiring; an early exit is disruptive both operationally and to the client relationship, since replacing an engineer mid-project is difficult. The bond is intended to protect the continuity of the client relationship over the medium term.
+  \item External hires brought on to cover a specific client project (for example, additional consultants sourced from South Asia or Latin America) are hired as consultants for the duration of that project, typically on renewable one-year contracts tied to the life of the client engagement. If the project ends, the contract ends with it, since the company can only continue to pay staff against active client work.
+\end{itemize}
+
+\section{Selection, Assessment, and the Technical Assessment Process}
+
+The following stages of assessment were described as applying, in combination, across the hiring process:
+
+\begin{enumerate}[leftmargin=1.5cm]
+  \item \textbf{Resume vs. JD screening} -- an initial filter conducted by the recruiting team.
+  \item \textbf{Talent Acquisition round} -- a first-round interview focused on general fit.
+  \item \textbf{Technical round} -- role-specific technical evaluation.
+  \item \textbf{Coding assessment} -- used for roles where it is relevant; the platform and question set may be determined either by the client or by Fusemachines' own engineers, depending on the engagement.
+  \item \textbf{Client interview round(s)} -- for client-hired roles, typically two to three further rounds conducted by the client directly.
+  \item \textbf{Background and police report verification} -- the final stage before formal offer and onboarding.
+\end{enumerate}
+
+On the coding-assessment platform specifically: the interviewees noted that Fusemachines had previously used a platform called VCP for setting and administering coding questions, but discontinued it after encountering repeated proctoring-related issues that suppressed pass rates. The company currently either uses an in-house assessment process or defers to the client's own coding platform (of an industry-standard, LeetCode-like type) when the client specifies one.
+
+\section{Training}
+
+\subsection*{1. Types of Training Provided}
+\begin{itemize}[leftmargin=1.5cm]
+  \item \textbf{Departmental / role-specific training} tied to the kind of work a team does, refreshed periodically as new tools or techniques emerge -- particularly frequent for the AI team, which has new course offerings roughly every quarter.
+  \item \textbf{Cross-departmental training}, actively encouraged by the company. For example, an employee whose core work is technical may be encouraged to take a project management or client communication course, since client-facing communication skills were specifically cited as important regardless of an employee's primary function.
+  \item \textbf{External partnership-based learning}, through institutional relationships with organizations such as NASIT and AmCham (American Chamber of Commerce), whose members include Fusemachines' senior directors. These partnerships produce learning sessions on a quarterly basis, to which the company sends a deliberately diverse group of employees.
+\end{itemize}
+
+\subsection*{2. Ownership of Training Decisions}
+Institutional partnerships (which organizations to partner with, at what level) are set by senior management. How those partnerships translate into concrete employee benefit -- who attends, how frequently -- is decided by the employee's manager and implemented operationally by the HR team.
+
+\section{Manpower, Internal Management, and Governance}
+
+\subsection*{Workforce Size and Distribution}
+The interviewees cited a headcount of approximately 291 employees based in Nepal, with a global total of approximately 310 spread across Nepal, the United States, and the Dominican Republic. (These figures were self-corrected mid-interview and should be treated as approximate rather than exact.) The majority of the workforce -- by the interviewees' account, 70--80\% -- is based in Nepal, which was explicitly described as the company's primary operating base, rather than Nepal being treated as a satellite sales office.
+
+\subsection*{Multi-Timezone Staffing}
+Because Fusemachines' clients and leadership span multiple regions, the Nepal team operates across three overlapping shift patterns to maintain coverage with US-based teams and clients:
+\begin{itemize}[leftmargin=1.5cm]
+  \item 9:00 AM -- 6:00 PM (standard local shift)
+  \item 1:00 PM -- 10:00 PM
+  \item 3:30 PM -- 12:30 AM (for full overlap with US working hours)
+\end{itemize}
+Which shift an employee is assigned to is determined by their role and the team they will be collaborating with (for example, Sales roles working closely with the US team require the night shift). This is communicated to candidates during the interview process itself, and confirmed again during the offer stage alongside salary and benefits, so that shift expectations are clear before a candidate accepts.
+
+\subsection*{Policy Governance: What Is Mandated vs. What Is Discretionary}
+Policy at Fusemachines operates on two layers:
+\begin{itemize}[leftmargin=1.5cm]
+  \item \textbf{Legally mandated layer.} Leave entitlements, basic salary floors, and similar HR fundamentals must comply with Nepal's labour law; there is no flexibility here since these are statutory minimums. Similarly, the company's ISO certification requires its Compliance department to set policy that aligns with certification requirements. Where Fusemachines operates in other countries, local policy is adjusted to that country's legal standard.
+  \item \textbf{Discretionary / culture layer.} Senior management sets the company's culture -- what kinds of events the company supports or participates in, what training the company encourages, which institutional partnerships it forms. How that culture translates into individual employee experience (e.g., specific hybrid-hour arrangements, which training session an individual attends) is typically decided between an employee and their direct manager, and implemented by HR.
+\end{itemize}
+
+\subsection*{Hybrid Work Model}
+The standard arrangement is three days in the office and two days working from home per week. Managers are required to be in the office a minimum of three days; other employees a minimum of two days; the remaining days are left to individual preference. Employees with a personal circumstance requiring additional remote flexibility can request it. The company also retains employees based outside the Kathmandu Valley, who have worked with the company for extended periods without a physical office presence in their location.
+
+\subsection*{Attendance, Tracking, and Communication}
+Attendance is tracked through login/logout on the company's internal HR system, supplemented by a daily work log that each employee fills in describing that day's work. Teams additionally hold daily (or twice-daily) stand-up/sync meetings. The interviewees were explicit that granular activity monitoring -- tracking whether a laptop is actively on or off, for instance -- is not part of the company's culture; oversight instead relies on these lighter-weight mechanisms plus regular manager check-ins on whether a team's OKRs are on track. Communication across levels, including for remote/hybrid staff, runs primarily through Google Chat, alongside Slack and Jira for project- and task-level tracking; the company's collaboration tooling is built almost entirely on the Google Workspace ecosystem.
+
+\subsection*{Quarterly OKR Planning}
+Each department sets Objectives and Key Results (OKRs) at the start of every quarter. Individual employees know their specific commitment against the department OKR from the start of the quarter; how they manage their own time to meet it is left to the individual and their supervisor, rather than being centrally dictated.
+
+\subsection*{Response to External Disruption}
+The interviewees described the company's approach to handling large-scale external disruptions -- including the COVID-19 period and, more recently, the Gen Z protests in Nepal -- as being coordinated through HR Operations, with two consistent features: (1) clients were proactively understanding of local conditions (in the case of the Gen Z protests, clients explicitly reached out acknowledging the situation and asking Fusemachines to support its employees rather than push deadlines), and (2) the CEO gave employees the explicit choice to continue working or to take leave during the protest period, with no salary deduction either way.
+
+\section{Performance Management, Appraisal, and Motivation}
+
+\subsection*{Appraisal Structure}
+Performance appraisal is conducted in multiple layers rather than as a single annual event:
+\begin{itemize}[leftmargin=1.5cm]
+  \item \textbf{Self-appraisal.} Employees score themselves against defined categories (e.g., goal achievement) and provide written justification for each score.
+  \item \textbf{Manager evaluation.} The manager reviews the self-appraisal and applies their own score, which may differ from the employee's self-assessment.
+  \item \textbf{Peer evaluation.} Colleagues also contribute an evaluation; where an employee has worked across multiple projects, input may be gathered from more than one project manager.
+  \item \textbf{Monthly scorecard.} A separate, five-aspect scorecard (including goal achievement and cultural/communication fit) is filled in by the manager every month, so that feedback is captured close to when the underlying work happened rather than being reconstructed at year-end from memory.
+  \item \textbf{Layered timing.} Quarterly review by the immediate supervisor, roughly half-yearly review by the department head, and yearly review at director level -- reflecting that different levels of management have different degrees of visibility into an individual's day-to-day work.
+\end{itemize}
+
+\subsection*{Performance Improvement and Termination}
+Where performance is below expectation, the company first works to identify whether the cause is personal or a lack of professional training, and addresses that directly. Where performance remains below expectation, the employee may be placed on a Performance Improvement Plan (PIP) with specific targets to be met within roughly three months. Meeting the targets allows the employee to continue; persistent failure to meet them can lead to contract termination.
+
+\subsection*{Rewards, Recognition, and Motivation}
+\begin{itemize}[leftmargin=1.5cm]
+  \item A \textbf{client retention allowance} may be paid to employees working on client accounts; the specific amount is project-dependent and treated as confidential.
+  \item An annual performance review determines \textbf{salary review and promotion} eligibility.
+  \item The company runs an annual recognition event (referred to as the \textbf{``Fusemachines Gala,''} held around 1 January) at which the Highest Performing Team and Highest Performing Individual are recognized company-wide, based on scoring by a review committee.
+  \item \textbf{Internal department mobility} is available -- an employee in one department (e.g., HR) can move toward another function (e.g., project management) if it can be planned out with their manager.
+  \item The interviewees identified the \textbf{direct manager as the primary source of day-to-day motivation}, with company-wide HR policy as a second source. Periodic \textbf{employee satisfaction surveys (ESAT)} are compiled by HR and discussed with top management to decide whether specific pieces of employee feedback can be implemented as new policy for the following fiscal year or month. (The interviewees also referenced CSAT, or customer satisfaction, as the parallel external-facing metric.)
+\end{itemize}
+
+\section{Accommodations for Students and Employees Pursuing Further Study}
+Where an employee is also pursuing further studies (for example, a Master's or PhD) alongside their job, accommodation is handled case-by-case between the employee and their manager, rather than through a fixed policy. The stated principle is that neither side should be compromised -- work should not affect study, and study should not affect committed project deliverables (including client-facing calls, where relevant). Where the employee's class schedule and work schedule do not naturally overlap, this is generally straightforward; where an employee is on a client-facing role with an unpredictable call schedule, more explicit discussion and assurance is required before the arrangement is approved.
+
+\section{Pathways for Students}
+\begin{itemize}[leftmargin=1.5cm]
+  \item The \textbf{AI Fellowship} was identified as the strongest entry pathway for students, since completing it substantially raises the chance of selection for a Junior ML Engineer role.
+  \item \textbf{Internal hiring} (i.e., converting existing junior/support staff into engineering roles) was described as having largely paused at the time of the interview.
+  \item At the time of the interview, there were \textbf{no open junior-level engineering roles} on the career page; even ``junior'' ML engineering hires were being evaluated with a minimum of two to three years of experience, because new hires are expected to be assigned directly onto a billable client project on joining.
+  \item Students interested specifically in an \textbf{internship} were advised to email their resume directly rather than wait for a formal posting; the company enrolls interns opportunistically as openings arise.
+\end{itemize}
+
+% ============================================================
+% CHAPTER 5
+% ============================================================
+\chapter{Digital Tooling and Cross-Functional Project Management}
+
+\section{Digital Tooling and Cross-Functional Project Management}
+
+\subsection*{1. Internal Collaboration Tooling}
+Fusemachines' internal operations run almost entirely on the Google Workspace ecosystem (Google Chat, Google Calendar, and related products, available to staff via a corporate package), supplemented by Jira and Slack for task- and project-level tracking. The interviewees were not able to specify the exact internal configuration of every tool during the interview, noting this would need to be confirmed separately with the relevant internal team.
+
+\subsection*{2. Internal AI and Automation Use}
+Fusemachines is actively developing and using AI -- including agentic AI capability -- internally, to automate aspects of its own operations such as tracking and filing/document management, in addition to the AI products and services it builds for clients. The interviewees confirmed this work is underway and actively used but declined to name the specific internal product, as it had not yet been publicly announced at the time of the interview. Every department was described as reasonably comfortable with AI tools generally available on the market, with the internal IT team separately working on how to customize available AI products to fit the company's own structure. For data-privacy reasons -- particularly given the company's status as a publicly listed company -- internally used AI/LLM capability is hosted by Fusemachines itself rather than routed through third-party APIs for company data.
+
+\subsection*{3. Cross-Functional Project Execution}
+A typical client project draws staff from multiple departments -- for example, engineering (AI/Data/App), UI/design, Sales (client-facing), and Marketing/PR (promotion) -- rather than being confined to a single department. Once a project is announced, a cross-functional subgroup (the interviewees' example used roughly fifteen people) is assembled from the relevant teams and is coordinated by a single Project Manager, who owns coordination and tracking for the project as a whole rather than for any one team within it.
+
+\begin{itemize}[leftmargin=1.5cm]
+  \item \textbf{Kickoff.} The departments that need to align meet at project kickoff to confirm requirements, feasibility, accountability (who owns what, who needs to be informed), and risk factors before work begins.
+  \item \textbf{Tracking.} Progress is tracked against a shared list/tracker (the interviewees' illustrative example was a simple Excel-based checklist marking each item as completed, in progress, or paused) reviewed against the project timeline.
+  \item \textbf{Sync cadence.} Sync-ups happen on demand rather than on a single fixed schedule -- daily for urgent projects, weekly otherwise -- and inter-department issues are generally resolved through these syncs as they arise, rather than through a separate formal escalation process.
+  \item \textbf{Emphasis on updates over rigid tracking.} The interviewees specifically emphasized that, in a hybrid environment where a manager cannot see whether someone is actively working, proactive status updates from team members matter more than deadline-tracking alone -- both to keep the project visibly on track and to make team members feel supported.
+\end{itemize}
+
+\subsection*{4. Decision Authority: Project Manager vs.\ Department Head}
+The interviewees were explicit that Fusemachines does not have a single fixed rule for whether a Project Manager or a Department Head holds final say on a given decision within a project -- both models have trade-offs, and which applies can vary by situation. In practice, decision authority is influenced by how urgent the situation is, how important the client is, how fast turnaround needs to be, and the individual manager involved. Two examples given: a Project Manager can typically extend an internal delivery buffer on their own authority; but a new client-facing feature, or public-facing communication material, requires senior/director-level (or Head of Technology-level) sign-off before release. Ultimately, every significant decision carries a due-diligence sign-off from the CEO or Head of Technology, even where day-to-day execution authority sits with the Project Manager or Department Head.
+
+\subsection*{5. Project Intake and Resourcing}
+The company does not cap the number of client projects it takes on, since project volume drives revenue directly. If sufficient resources exist in the internal pipeline, new clients are onboarded and staffed from existing headcount. Where resources are insufficient, the Talent Acquisition team -- which operates in South Asia as well as Latin America -- begins hiring rigorously against the specific client need. Where project volume subsequently falls, the company does not carry idle headcount indefinitely: externally sourced staff are typically engaged as consultants for the life of the specific client contract, rather than as open-ended full-time hires.
+
+% ============================================================
+% CHAPTER 6
+% ============================================================
+\chapter{Client Engagement and Public Communication}
+
+\section{Client Engagement and Public Communication}
+
+This interview was conducted with Fusemachines' Senior Manager for PR and Communications; however, the discussion itself focused on internal organizational and HR management rather than on the company's external advertising or marketing strategy in detail, and that scope should be read as a limitation of this chapter rather than a comprehensive account of Fusemachines' PR function.
+
+What was described in the interview:
+\begin{itemize}[leftmargin=1.5cm]
+  \item Fusemachines works with enterprise clients across a wide range of industry verticals worldwide, including a number of Fortune 100 companies.
+  \item The company does not maintain a fixed list of accepted vs.\ rejected client types. Acceptance is governed by whether there is alignment between the client's requirement and Fusemachines' expertise, and whether the company can commit to fulfilling the client's need.
+  \item The interviewees directed us to the company website (fusemachines.com) as the authoritative source for the current vertical list, case studies, and client roster, noting that this is kept more current than anything they could state from memory in the interview.
+\end{itemize}
+
+The interviewees also mentioned, separately from PR/marketing, that the company was in the process of organizing a large meet-up for computer science researchers in Nepal (including participants travelling from Australia), which they raised as a possible additional point of engagement for the interviewing students' colleges.
+
+% ============================================================
+% CHAPTER 7
+% ============================================================
+\chapter{Challenges Faced}
+
+\section{Challenges Faced}
+
+Based on points raised across the interview, the following operational challenges can be identified. These are the group's own synthesis of friction points implicit in the interview, rather than a list of challenges the interviewees explicitly labelled as such.
+
+\begin{enumerate}[leftmargin=1.5cm]
+  \item \textbf{Multi-Timezone Coordination.} Covering three overlapping shift patterns to stay aligned with US-based teams and clients places real scheduling constraints on the Nepal workforce, particularly for client-facing roles that require night-shift coverage.
+  \item \textbf{Confidentiality Constraints on Internal Innovation.} The company's own internal AI tooling could not be named or described in detail during the interview, since it had not yet been publicly announced -- limiting how much of the company's most current internal digital-transformation work could be documented in this study.
+  \item \textbf{Retention Risk on Client-Facing Engineering Roles.} The two-year bond contract for engineers is itself evidence of an underlying challenge: an engineer leaving mid-project is difficult to replace and can damage an active client relationship, so the company relies on a contractual mechanism rather than a purely voluntary retention strategy.
+  \item \textbf{Ambiguous Decision Authority.} The interviewees could not state a single fixed rule for whether a Project Manager or a Department Head holds final decision authority on a given matter -- this is explicitly handled case-by-case, which introduces a degree of structural ambiguity into cross-functional project execution.
+  \item \textbf{Balancing Further Study with Billable Work.} Employees pursuing further studies alongside their job are accommodated on an individual, manager-negotiated basis rather than a standard policy, which places the burden of managing this trade-off on individual managers rather than a company-wide framework.
+  \item \textbf{Exposure to External Disruption.} Large-scale disruptions such as COVID-19 or nationwide protests directly affect operational continuity (internet access, ability to reach the office, employee wellbeing); the company's response so far has depended on ad hoc leadership decisions (e.g., the CEO's leave-without-deduction policy during the Gen Z protests) rather than a documented crisis-response protocol.
+  \item \textbf{Revenue Exposure to Project Pipeline Volume.} Because staffing volume and revenue are directly tied to the number and size of active client projects, periods of lower project volume translate directly into lower revenue and reduced hiring, creating cyclical pressure on both financial planning and workforce stability.
+\end{enumerate}
+
+% ============================================================
+% CHAPTER 8
+% ============================================================
+\chapter{Recommendations}
+
+\section{Recommendations}
+
+Based on the challenges identified above and the group's own analysis of the interview, the following recommendations are proposed:
+
+\begin{enumerate}[leftmargin=1.5cm]
+  \item \textbf{Document a Decision-Authority Matrix.} Formalizing (even informally, as an internal reference rather than rigid policy) which categories of decision default to the Project Manager versus the Department Head would reduce the case-by-case ambiguity currently relied upon, without removing the flexibility the company values.
+  \item \textbf{Standardize a Cross-Timezone Handover Protocol.} A lightweight, documented handover format for work crossing shift boundaries (beyond the existing daily work log) could reduce dependence on informal sync-ups for continuity across the three overlapping shifts.
+  \item \textbf{Formalize the Further-Study Accommodation Process.} Converting the current manager-by-manager negotiation for employees pursuing further study into a lightweight standard template (while preserving case-by-case flexibility) would reduce inconsistency in how similar requests are handled across different managers and departments.
+  \item \textbf{Publish a High-Level, Non-Sensitive Note on Internal AI Use.} Without disclosing the unreleased product itself, a short public-facing statement on the company's general approach to internal AI/automation adoption would let the company engage more fully with academic case studies such as this one, while preserving confidentiality on the specific product.
+  \item \textbf{Build a Resourcing Buffer Against Pipeline Volatility.} Given that hiring volume is tightly coupled to project pipeline size, maintaining a modest internal ``bench'' buffer (rather than hiring purely reactively) could reduce the operational strain of rigorous ad hoc hiring cycles when new clients arrive.
+\end{enumerate}
+
+% ============================================================
+% CHAPTER 9
+% ============================================================
+\chapter{Observation}
+
+\section{Observation}
+
+As part of this case study, our group conducted a joint, one-hour interview with two Fusemachines staff -- Ms. Pragya Joshi, Senior Manager for Talent Acquisition, and Mr. Akshath Chhetri, PR Manager. As we had not been told in advance which staff member(s) we would be meeting, our questions were addressed to both generally rather than to either individual specifically; both answered throughout the session, frequently adding to or building on each other's responses. Two members of our own interviewing group are themselves current Fusemachines AI Fellows, which gave the discussion an added layer of first-hand context alongside the interviewees' answers.
+
+The interview opened with a company overview -- what Fusemachines does, its founding history, and the scale and geographic spread of its operations -- before moving into a detailed, question-driven discussion covering organizational structure, HR policy, leave and benefits, hybrid work and internal tracking, training, decision-making layers, digital tooling, cross-functional project execution, performance appraisal, crisis response, hiring, and pathways for students.
+
+Several points stood out as notable takeaways:
+\begin{itemize}[leftmargin=1.5cm]
+  \item The clear separation between what is government-mandated (leave, statutory pay floors, ISO-linked compliance policy) and what is internally discretionary (culture, training partnerships, hybrid-hour specifics) gives a useful lens for understanding how a private technology company structures its own governance.
+  \item The company's explicit low-surveillance stance on hybrid work (no activity/keystroke tracking; reliance instead on daily work logs and stand-ups) was a deliberate cultural choice rather than a gap in capability.
+  \item The interviewees' candour about structural ambiguity -- particularly on Project Manager vs.\ Department Head decision authority, and on not being able to name the company's own unreleased internal AI product -- was itself informative about how the organization currently operates at this stage of its growth.
+  \item The company's response to the recent Gen Z protests in Nepal (client empathy, CEO-granted choice to work or take unpaid leave without deduction) illustrated how the organization's stated ``open culture'' plays out under real operational pressure.
+\end{itemize}
+
+Given the interview format, we were not able to independently observe day-to-day departmental operations first-hand; the findings in this report reflect the interviewees' account rather than direct observation, and should be read with that limitation in mind.
+
+% ============================================================
+% CHAPTER 10
+% ============================================================
+\chapter{Conclusion}
+
+\section{Conclusion}
+
+Fusemachines presents an instructive case of a Nepal-headquartered-in-practice, US-headquartered-on-paper technology company managing a global, multi-timezone, hybrid workforce. Its organizational structure cleanly separates client-delivery functions (Technology, Growth) from support functions (Finance, People and Operations), while its governance model draws a clear line between statutory HR compliance and internally set culture.
+
+The company's HR practices -- tenure-scaled vacation benefits, floating (rather than fixed-category) leave, a multi-layered self/peer/manager appraisal system, and a deliberately low-surveillance approach to hybrid work -- reflect a conscious effort to build an internally consistent culture on top of legal minimums, rather than treating compliance as the ceiling of employee experience. At the same time, the interview surfaced genuine structural tensions: decision authority between Project Managers and Department Heads is resolved case-by-case rather than by fixed rule; retention on client-facing engineering roles is managed contractually (via bond agreements) rather than purely through employee satisfaction; and both hiring volume and revenue remain directly exposed to the volume of active client projects at any given time.
+
+Overall, the organization appears to manage these tensions through a combination of clear escalation to senior leadership for high-stakes decisions, consistent (if informal) communication practices, and a stated willingness to extend flexibility to employees during periods of external disruption. The recommendations proposed in this report -- particularly around documenting decision authority and formalizing ad hoc accommodations -- are offered as incremental refinements to a structure that, on the evidence of this interview, is already functioning coherently at its current scale.
+
+\end{document}
